@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>vsCode配合tomcat启动项目 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="不知不觉清明节已经过去了，乖乖的做了三天留守儿童。讲真，上周还是大雨澎湃，这个清明已经热的懒得出门。就感觉买的春装还没来得及穿，夏天就来了。这个假期在家研究了下博客换皮肤的东西，有感兴趣的同学可以私聊我求分享。不感兴趣就算了。这篇文章也没多少内容，前提是环境变量和maven已经按照团队博客的内容设置好了，我在这里补充说明一下我们团队博客里的教程。主要是从检出项目到整个运行起来，只要按照我的步骤来，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vsCode配合tomcat启动项目">
+<meta property="og:url" content="http://yoursite.com/2017/04/05/blog2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="不知不觉清明节已经过去了，乖乖的做了三天留守儿童。讲真，上周还是大雨澎湃，这个清明已经热的懒得出门。就感觉买的春装还没来得及穿，夏天就来了。这个假期在家研究了下博客换皮肤的东西，有感兴趣的同学可以私聊我求分享。不感兴趣就算了。这篇文章也没多少内容，前提是环境变量和maven已经按照团队博客的内容设置好了，我在这里补充说明一下我们团队博客里的教程。主要是从检出项目到整个运行起来，只要按照我的步骤来，">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490037586774&di=b1190db10664d65ef77b982f99b8fbbe&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-09-30%2F003514471.jpg">
+<meta property="og:updated_time" content="2017-08-13T08:03:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vsCode配合tomcat启动项目">
+<meta name="twitter:description" content="不知不觉清明节已经过去了，乖乖的做了三天留守儿童。讲真，上周还是大雨澎湃，这个清明已经热的懒得出门。就感觉买的春装还没来得及穿，夏天就来了。这个假期在家研究了下博客换皮肤的东西，有感兴趣的同学可以私聊我求分享。不感兴趣就算了。这篇文章也没多少内容，前提是环境变量和maven已经按照团队博客的内容设置好了，我在这里补充说明一下我们团队博客里的教程。主要是从检出项目到整个运行起来，只要按照我的步骤来，">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490037586774&di=b1190db10664d65ef77b982f99b8fbbe&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-09-30%2F003514471.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-blog2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/05/blog2/" class="article-date">
+  <time datetime="2017-04-04T16:39:12.000Z" itemprop="datePublished">2017-04-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vsCode配合tomcat启动项目
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>不知不觉清明节已经过去了，乖乖的做了三天留守儿童。讲真，上周还是大雨澎湃，这个清明已经热的懒得出门。就感觉买的春装还没来得及穿，夏天就来了。这个假期在家研究了下博客换皮肤的东西，有感兴趣的同学可以私聊我求分享。不感兴趣就算了。这篇文章也没多少内容，前提是环境变量和maven已经按照团队博客的内容设置好了，我在这里补充说明一下我们<a href="https://axnfex.github.io/2017/03/18/%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%89%93%E5%8C%85maven%E9%A1%B9%E7%9B%AE%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0tomcat/#more" target="_blank" rel="external">团队博客</a>里的教程。主要是从检出项目到整个运行起来，只要按照我的步骤来，无脑操作就行了。</p>
+<h3 id="1-svn检出项目到本地工作空间"><a href="#1-svn检出项目到本地工作空间" class="headerlink" title="1. svn检出项目到本地工作空间"></a>1. svn检出项目到本地工作空间</h3><p>手动将缺少的jar包放入CompanyOA/src/main/webapp/WEB-INF/lib目录里<code>此处是以我的项目为例，你将CompanyOA换成你对应的项目名称</code>，<strong>注意：</strong>这个jar包是放在工作空间里，并不是tomcat里部署的项目，而且不用提交到svn。</p>
+<h3 id="2-配置pom-xml文件"><a href="#2-配置pom-xml文件" class="headerlink" title="2. 配置pom.xml文件"></a>2. 配置pom.xml文件</h3><p>修改项目根目录中的pom.xml文件，复制团队博客中的那段plugin代码，此处只需要注意path标签终对应的是项目名，也是你部署到tomcat中的war包生成的项目的名称。也是你访问时的项目名，名字不要冲突！</p>
+<h3 id="3-启动tomcat"><a href="#3-启动tomcat" class="headerlink" title="3. 启动tomcat"></a>3. 启动tomcat</h3><p>方法一：找到tomcat7/bin/startup.bat，然后双击启动<code>建议：将该文件发送到桌面快捷方式。</code><br>方法二：打开cmd命令，输入catalina.bat run 回车执行</p>
+<h3 id="4-部署项目到tomcat"><a href="#4-部署项目到tomcat" class="headerlink" title="4. 部署项目到tomcat"></a>4. 部署项目到tomcat</h3><p>在项目的根目录中打开git命令窗口，或者用vsCode打开你检出的项目，调出终端，里面默认定位在项目的根目录中，直接输入：<br><code>mvn tomcat7:redeploy</code><br>此时你会看到tomcat7/webapps/目录中多出一个项目和对应的war包。</p>
+<h3 id="5-在项目中安装gulp"><a href="#5-在项目中安装gulp" class="headerlink" title="5. 在项目中安装gulp"></a>5. 在项目中安装gulp</h3><p>依次执行如下命令：</p>
+<blockquote>
+<p>1 cnpm install gulp –save-dev<br>2 cnpm install gulp-nui –save-dev<br>3 cnpm install gulp-changed –save-dev<br>此时项目中会生成node_modules文件夹和package.json文件</p>
+</blockquote>
+<h3 id="6-新建gulpfile-js文件"><a href="#6-新建gulpfile-js文件" class="headerlink" title="6. 新建gulpfile.js文件"></a>6. 新建gulpfile.js文件</h3><p>在项目根目录中新建gulpfile.js文件，在这里我贴出我的gulpfile.js代码。我增加了详细的备注，而且因为我的项目率先用到了nui模块化和合并压缩，所以配置比较全。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</div><div class="line"><span class="keyword">var</span> nui = <span class="built_in">require</span>(<span class="string">'gulp-nui'</span>);</div><div class="line"><span class="comment">//var watch = require('gulp-nuiwatch');</span></div><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="keyword">var</span> changed = <span class="built_in">require</span>(<span class="string">'gulp-changed'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> root = path.join(__dirname, <span class="string">'/src/main/webapp/Contents/'</span>);<span class="comment">//__dirname是工作空间中项目的根目录</span></div><div class="line"><span class="keyword">var</span> tomcaturl = <span class="string">'../../tomcat7/webapps/MainCompanyOA/Contents/'</span>;<span class="comment">//部署在tomcat中的项目路径（工作空间和tomacat在一个盘中时）</span></div><div class="line"><span class="comment">//var tomcaturl = 'D:/tomcat7/webapps/CompanyOA/Contents';//部署在tomcat中的项目路径（工作空间和tomacat不在一个盘中时）</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> options = &#123;</div><div class="line">	<span class="attr">paths</span>:&#123;</div><div class="line">		<span class="attr">base</span>:root+<span class="string">'/oa/'</span></div><div class="line">	&#125;,</div><div class="line">	<span class="attr">filterPath</span>:<span class="function"><span class="keyword">function</span>(<span class="params">src, dir</span>)</span>&#123;</div><div class="line">		<span class="keyword">return</span> src.replace(<span class="regexp">/^\s*&lt;%=\s*request.getContextPath\(\)\s*%&gt;/</span>, __dirname+<span class="string">'/src/main/webapp'</span>)</div><div class="line">				  .replace(<span class="regexp">/^\s*$\&#123;\s*base\s*\&#125;/</span>, __dirname+<span class="string">'/src/main/webapp'</span>)</div><div class="line">		<span class="comment">//return src.replace(/^\s*/, __dirname+'/src/main/webapp')</span></div><div class="line">				  <span class="comment">//.replace(/^\s*/, __dirname+'/src/main/webapp')</span></div><div class="line">		<span class="comment">// return src.replace(/^Contents/, root)</span></div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">gulp.task(<span class="string">'movetotomcat'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	gulp.src([root+<span class="string">'**/*.*'</span>])</div><div class="line">	     .pipe(changed(tomcaturl, &#123;<span class="attr">hasChanged</span>:changed.compareSha1Digest&#125;))</div><div class="line">	     .pipe(gulp.dest(tomcaturl))</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'assetrev'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	gulp.src([root+<span class="string">'/**/*.&#123;ftl,jsp&#125;'</span>])</div><div class="line">			.pipe(nui(options))</div><div class="line">			.pipe(gulp.dest(root))</div><div class="line">&#125;)</div><div class="line"></div><div class="line">gulp.task(<span class="string">'cssrev'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	gulp.src([root+<span class="string">'/**/*.css'</span>])</div><div class="line">			.pipe(nui(options))</div><div class="line">			.pipe(gulp.dest(root))</div><div class="line">&#125;)</div><div class="line"></div><div class="line">gulp.task(<span class="string">'watch'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	gulp.watch([root+<span class="string">'/**/*.&#123;css,js&#125;'</span>, <span class="string">'!'</span>+root+<span class="string">'/**/*.jsp'</span>], [<span class="string">'assetrev'</span>]);</div><div class="line">	gulp.watch([root+<span class="string">'/**/*.&#123;jpg,png,gif,eot,woff,ttf,svg&#125;'</span>], [<span class="string">'cssrev'</span>]);</div><div class="line">	gulp.watch([root+<span class="string">'**/*.*'</span>], [<span class="string">'movetotomcat'</span>]);</div><div class="line">&#125;)</div><div class="line"></div><div class="line">gulp.task(<span class="string">'default'</span>, [<span class="string">'assetrev'</span>, <span class="string">'watch'</span>])</div></pre></td></tr></table></figure></p>
+<hr>
+<p>感谢大家花费时间阅读这篇文章，祝大家在以后的日子里一起学习，一起进步！</p>
+<p>作者 <a href="http://weibo.com/3116529841/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo&amp;is_all=1" target="_blank" rel="external">@程序猿的故事</a><br>2017 年 04月 05日<br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1490037586774&amp;di=b1190db10664d65ef77b982f99b8fbbe&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-09-30%2F003514471.jpg" alt="photo"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/05/blog2/" data-id="cj6b5gaps000798uqb83duvjm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tomcat-svn/">tomcat svn</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/13/blog3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          第一次与原型约会
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/21/blog1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">我的第一篇博客</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Object-prototype/">Object prototype</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat-svn/">tomcat svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人感悟-心情-生活-学习/">个人感悟 心情 生活 学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Object-prototype/" style="font-size: 10px;">Object prototype</a> <a href="/tags/tomcat-svn/" style="font-size: 10px;">tomcat svn</a> <a href="/tags/个人感悟-心情-生活-学习/" style="font-size: 10px;">个人感悟 心情 生活 学习</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/13/blog3/">第一次与原型约会</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/05/blog2/">vsCode配合tomcat启动项目</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/21/blog1/">我的第一篇博客</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/20/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
